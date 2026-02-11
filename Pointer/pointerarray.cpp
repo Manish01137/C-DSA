@@ -14,9 +14,14 @@ int main(){
     //    cout<<sizeof(*ptr);
     //    cout<<endl;
     //    cout<<sizeof(&ptr);
-    int a[20] = {1,2,3,4,5};
-    cout<<&a[0]<<endl;
-    cout<<&a<<endl;
-    cout<<a;
+    // int a[20] = {1,2,3,4,5};
+    // cout<<&a[0]<<endl;
+    // cout<<&a<<endl;
+    // cout<<a;
+    int arr[10];
+    int *ptr = &arr[10];
+    cout<<ptr<<endl;
+    ptr = ptr + 1;
+    cout<<ptr<<endl;
     return 0;
 }
