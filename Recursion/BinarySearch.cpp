@@ -1,5 +1,20 @@
 #include<iostream>
 using namespace std;
+bool binarySearch(int *arr,int s,int e,int k){
+     int mid = s + (e-s)/2;
+    if(s>e)
+    return false;
+    if(arr[mid] == k)
+    return true;
+   
+
+    if(arr[mid]<k){
+        return binarySearch(arr,mid+1,e,k);
+    }
+    else{
+        return binarySearch(arr,s,mid-1,k);
+    }
+}
 int main(){
     int n;
     cout<<"Enter the size of array: ";
@@ -13,5 +28,9 @@ int main(){
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
     }
+    int key;
+    cout<<"enter the search element: ";
+    cin>>key;
+    cout<<"Present or not"<<binarySearch(arr,0,n,key);
     return 0;
 }
