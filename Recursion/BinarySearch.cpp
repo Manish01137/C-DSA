@@ -5,8 +5,8 @@ bool binarySearch(int *arr,int s,int e,int k){
     if(s>e)
     return false;
     if(arr[mid] == k)
-    return true;
-   
+    return 1;
+     
 
     if(arr[mid]<k){
         return binarySearch(arr,mid+1,e,k);
