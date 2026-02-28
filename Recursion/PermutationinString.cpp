@@ -1,29 +1,43 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-void solve (int nums,int anss,int index){
-    if(index>=nums.size()){
-        
+
+void solve(int arr[], int index, int n) {
+
+    // Base Case
+    if (index == n) {
+        for (int i = 0; i < n; i++)
+            cout << arr[i] << " ";
+        cout << endl;
+        return;
+    }
+
+    // Generate permutations
+    for (int i = index; i < n; i++) {
+
+        swap(arr[index], arr[i]);   // choose
+        solve(arr, index + 1, n);   // explore
+        swap(arr[index], arr[i]);   // backtrack
     }
 }
-int permutation(int arr[],int nums){
-    int anss[];
-    int index = 0;
-    solve(nums,ans,index)
-    return anss;
+
+void permutation(int arr[], int n) {
+    solve(arr, 0, n);
 }
-int main(){
+
+int main() {
+
     int n;
-    cout<<"Enter the size of array: ";
-    cin>>n;
+    cout << "Enter size of array: ";
+    cin >> n;
+
     int arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    cout<<endl;
-    for(int i=0;i<n;i++){
-        cout<<arr[i]<<" ";
-    }
-    int ans = permutation(arr,n);
-    cout<<ans;
+
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+
+    cout << "\nPermutations:\n";
+
+    permutation(arr, n);
+
     return 0;
 }
