@@ -6,6 +6,15 @@ class Hero{
     int health;
     char level;
     
+    Hero(){
+       cout<<"constuctor called"<<endl; 
+    }
+    
+    // paramerterised Constructor
+    Hero(int health){
+        this->health = health;
+    }
+
     void  print(){
         cout<<level<<endl;
     }
@@ -24,15 +33,31 @@ class Hero{
     }
 };
 int main(){
+   // object created statically
+    Hero a;
+
+    //dyanmically 
+    Hero *h = new Hero;
+
+
+    // cout<<"Level is "<<a.level<<endl;
+    // cout<<"Health is "<<a.getHealth()<<endl;
+
+    // // dynamically
+    // Hero *b = new Hero;
+    // cout<<"Level is "<<(*b).level<<endl;
+    // cout<<"Health is "<<(*b).getHealth()<<endl;
     
-    Hero ramesh;
+    // cout<<"level is"<<b->level<<endl;
+    // cout<<"Health is"<<b->getHealth()<<endl;
 
-    cout<<"Ramesh Health is "<<ramesh.getHealth()<<endl;
+    // cout<<"Size of Ramesh is : "<<sizeof(ramesh)<<endl;
+    // cout<<"Ramesh Health is "<<ramesh.getHealth()<<endl;
 
-    ramesh.setHealth(70);
-    ramesh.level = 'A';
+    // ramesh.setHealth(70);
+    // ramesh.level = 'A';
 
-    cout<<"Health is "<<ramesh.getHealth()<<endl;
-    cout<<"Level is "<<ramesh.level<<endl;
+    // cout<<"Health is "<<ramesh.getHealth()<<endl;
+    // cout<<"Level is "<<ramesh.level<<endl;
     return 0;
 }
