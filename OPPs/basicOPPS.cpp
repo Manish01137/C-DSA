@@ -15,6 +15,10 @@ class Hero{
         this->health = health;
     }
 
+    Hero(int health, char level){
+        this->level = level;
+        this->health = health;
+    }
     void  print(){
         cout<<level<<endl;
     }
@@ -34,12 +38,16 @@ class Hero{
 };
 int main(){
    // object created statically
-    Hero a;
+   Hero ramesh(10);
+   cout<<"Adrress of rames: "<<&ramesh<<endl;
+   ramesh.getHealth();
+   
+   ramesh.print();
+   // dynamically 
+   Hero *h = new Hero(11);
 
-    //dyanmically 
-    Hero *h = new Hero;
-
-
+   Hero temp(22,'B');
+   temp.print();
     // cout<<"Level is "<<a.level<<endl;
     // cout<<"Health is "<<a.getHealth()<<endl;
 
