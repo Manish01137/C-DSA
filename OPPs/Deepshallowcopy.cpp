@@ -10,10 +10,26 @@ class Hero{
     cout<<"simple constructor called"<<endl;
     name = new char[100];
    }
+   Hero(int health){
+    this->health = health;
+   }
+   Hero(int health,char level){
+    this->level = level;
+    this->health = health;
+   }
    void  print(){
         cout<<"Name: "<<this->name<<endl;
         cout<<"health "<<this->health<<endl;
         cout<<"level "<<this->level<<endl;
+    }
+
+    Hero(Hero& temp){
+        char *ch = new char[strlen(temp.name)+1];
+        strcpy(ch,temp.name);
+        this->name = ch;
+        cout<<"Copy constructor called "<<endl;
+        this->health = temp.health;
+        this->level = temp.level;
     }
     int getHealth(){
         return health;
