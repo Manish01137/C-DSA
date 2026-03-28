@@ -13,15 +13,17 @@ class Node{
         this->next = NULL;
     }
 };
-
+// travesing a linked list
 void print(Node* head){
     Node* temp = head;
     while(temp!=NULL){
-        cout<<temp->data;
+        cout<<temp->data<<" ";
         temp = temp->next;
     }
     cout<<endl;
 }
+
+// gives length of linked list
 int getLength(Node* head){
     int len = 0;
     Node* temp = head;
@@ -32,11 +34,20 @@ int getLength(Node* head){
    }
    return len;
 }
+void insertAtHead(Node* &head,int d){
+    Node* temp = new Node(d);
+    temp->next = head;
+    head -> prev = temp;
+    head = temp;
+}
 int main(){
     Node* node1 = new Node(123);
     Node* head = node1;
 
     print(head);
     cout<<getLength(head)<<endl;
+
+    insertAtHead(head,11);
+    print(head);
     return 0;
 }
