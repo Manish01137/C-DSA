@@ -1,11 +1,11 @@
 #include<iostream>
 using namespace std;
+
 class Node{
-    public:
+public:
     int data;
     Node* prev;
     Node* next;
-    // constructor
 
     Node(int d){
         this->data = d;
@@ -13,41 +13,88 @@ class Node{
         this->next = NULL;
     }
 };
-// travesing a linked list
+
+// Traversing
 void print(Node* head){
     Node* temp = head;
-    while(temp!=NULL){
-        cout<<temp->data<<" ";
+    while(temp != NULL){
+        cout << temp->data << " ";
         temp = temp->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
-// gives length of linked list
+// Length
 int getLength(Node* head){
     int len = 0;
     Node* temp = head;
 
-   while(temp!=NULL){
-    len++;
-    temp = temp->next;
-   }
-   return len;
+    while(temp != NULL){
+        len++;
+        temp = temp->next;
+    }
+    return len;
 }
-void insertAtHead(Node* &head,int d){
+
+// Insert at head
+void insertAtHead(Node* &head, Node* &tail, int d){
+    if(head == NULL){
+        Node* temp = new Node(d);
+        head = temp;
+        tail = temp;
+        return;
+    }
+
     Node* temp = new Node(d);
     temp->next = head;
-    head -> prev = temp;
+    head->prev = temp;
     head = temp;
 }
+
+// Insert at tail
+void insertAtTail(Node* &tail, Node* &head, int d){
+    if(tail == NULL){
+        Node* temp = new Node(d);
+        head = temp;
+        tail = temp;
+        return;
+    }
+
+    Node* temp = new Node(d);
+    tail->next = temp;
+    temp->prev = tail;
+    tail = temp;
+}
+void insertAtPosition(Node* &tail,Node* &head,int position,int d){
+    if(position==1){
+        insertAtHead(head,d);
+        return;
+    }
+    Node* temp = head;
+    int cnt = 1;
+    while(cnt<position-1){
+        temp = temp->next;
+        cnt++;
+    }
+    if(temp->next==NULL){
+        insertAtTail(tail,d);
+        return;
+    }
+}
 int main(){
-    Node* node1 = new Node(123);
-    Node* head = node1;
+    Node* head = NULL;
+    Node* tail = NULL;
 
+    insertAtHead(head, tail, 123);
     print(head);
-    cout<<getLength(head)<<endl;
 
-    insertAtHead(head,11);
+    insertAtHead(head, tail, 11);
     print(head);
+
+    insertAtTail(tail, head, 25);
+    print(head);
+
+    cout << "Length: " << getLength(head) << endl;
+
     return 0;
 }
