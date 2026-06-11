@@ -12,6 +12,15 @@ public:
         this->prev = NULL;
         this->next = NULL;
     }
+
+    ~Node(){
+        int val = this->val;
+        if(next!=NULL){
+            delete next;
+            next = NULL;
+        }
+        cout<<"memory free for node with data"<<val<<endl;
+    }
 };
 
 void print(Node* head){
@@ -36,7 +45,29 @@ int getLength(Node* head){
 
     return len;
 }
-
+void deleteNode(int position,Node* &head){
+    if(position == 1){
+        Node* temp = head;
+        temp->next->prev = NULL;
+        head = temp->next;
+        temp->next = NULL;
+        delete temp;
+    }
+    else{
+        Node* curr = head;
+        Node* prev = NULL;
+        
+        int cnt = 1;
+        while(cnt<position){
+            prev = curr;
+            curr = curr->next;
+            cnt++;
+        }
+        prev->next = curr->next;
+        curr->next = NULL;
+        delete curr;
+    }
+}
 void insertAtHead(Node* &head, int d){
     // empty list
     if(head==NULL){
@@ -99,7 +130,7 @@ int main(){
     insertAtTail(tail,13);
     print(head);
 
-   insertAtPositon(head,tail,2,100);
-   print(head);
+    insertAtPositon(head,tail,2,100);
+    print(head);
     return 0;
 }
