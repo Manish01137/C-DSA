@@ -13,6 +13,7 @@ class node{
         this->right = NULL;
     }
 };
+
 node* buildTree(node* root){
     cout<<"Enter the data: "<<endl;
     int data;
@@ -56,6 +57,33 @@ void levelOrderTraversal(node* root){
        
     }
 }
+void inorder(node* root){
+    // base case 
+    if(root == NULL){
+        return;
+    }
+ 
+        cout<<root->data<<" ";
+        inorder(root->right);
+    
+}
+void preorder(node* root){
+    // base case
+    if(root == NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+void postorder(node* root){
+    // base case
+    if(root == NULL){
+        preorder(root->left);
+        preorder(root->right);
+        cout<<root->data<<" ";
+    }
+}
 int main(){
     node* root = NULL;
 
@@ -64,5 +92,7 @@ int main(){
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     // level order
     levelOrderTraversal(root);
+    cout<<"Inorder Travels is: ";
+    inorder(root);
     return 0;
 }
