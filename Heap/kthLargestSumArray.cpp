@@ -96,7 +96,33 @@ vecotr<int> mergeKSortedArrays(vector<vector<int>>&KArray,int k){
      }
 return ans;
 }
-
+Node<int>* mergeKLists(vector<Node<int>*> &listArray){
+    priority_queue<Node<int>*,vector<int>*>,campare> minHeap;
+    int k = listArray.size();
+    if(k==0){
+        return NULL;
+    }
+    for(int i=0;i<k;i++){
+        if(listArray[i]!=NULL){
+            minHeap.push(listArray[i]);
+        }
+    }
+    while(minHeap.size()>0){
+        Node<int>* top = minHeap.top();
+        if(top->next!=NULL){
+            minHeap.next(top->next);
+        }
+        minHeap.pop();
+        if(head==NULL){
+            head = top;
+            tail = top;
+            if(head->next!=NULL){
+                minHeap.push(tail->next);
+            }
+        }
+    }
+    return ans;
+}
 int main() {
 
     Heap h;
