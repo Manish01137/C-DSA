@@ -30,6 +30,55 @@ vector<string> searchMaze(vector<vector<int>> &arr,int n){
     solve(0,0,arr,n,ans,visited,path);
     return ans;
 }
+
+void addSolution(vector<vector<int>> &ans,vector<vector<int>> &board){
+    vector<int> temp;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            temp.push_back(board[i][j]);
+        }
+    }
+    ans.push_back(temp);
+
+}
+bool isSage(int row,int col,vector<vector<int>> &board,int n){
+    int x = row;
+    int y = col;
+
+    // check for same row
+    while(col>=0){
+        if(board[x][y]==1)
+        return false;
+        y--;
+    }
+    x = row;
+    y = col;
+    
+}
+void solve(int col,vector<vector<int>> &ans,vector<vector<int>> &board,int n){
+     // base case
+     if(col==n){
+        addSolution(board,ans);
+        return;
+     }
+     // solve one case and rest Recursion will take care
+     for(int row = 0;row<n;row++){
+        if(isSafe(row,sol,board,n)){
+            // if placing queen is safe
+            board[row][col] = 1;
+            solve(col+1,ans,board,n);
+            // backtack
+            board[row][col] = 0;
+        }
+     }
+}
+vector<vector<int>> nQueens(int n){
+     vector<vector<int>> board(n,vector<int>(n,0));
+     vector<vector<int>> ans;
+     solve(0,ans,board,n);
+
+     return ans;
+}
 int main(){
 
     return 0;
