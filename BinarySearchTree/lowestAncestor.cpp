@@ -50,7 +50,58 @@ Node* inorderSuccessor(Node* root, Node* p) {
 
     return ans;
 }
-
+int floorInBST(TreeNode* root,int x){
+    int floor = -1;
+    while(root){
+        if(root->val == x){
+            return root->val;
+        }
+        if(root->val>x){
+            root = root ->left;
+        }
+        else{
+            floor = root->val;
+            root = root->right;
+        }
+    }
+    return floor;
+}
+// push all the left
+void pushAll(TreeNode* node){
+    while(node){
+        st.push(node);
+        node = node->left;
+    }
+}
+BSTIterator(TreeNode* root){
+    pushAll(root);
+}
+int next(){
+    TreeNode* temp = st.top();
+    st.pop();
+    // if right subtree exists
+    if(temp->right){
+        pushAll(temp->right);
+    }
+    return temp->val;
+}
+bool hasNext(){
+    return !st.empty();
+}
+bool solve(TreeNode* root,int k,unordered_set<int> &st){
+    if(root==NULL){
+        return false;
+    }
+    if(st.find(k-root->val)!=st.end()){
+        return true;
+    }
+    st.insert(root->val);
+    return solve(root->left,k,st) || solve(root->right,k,st);
+}
+bool findTarget(TreeNode* root,int k){
+    unordered_set<int> st;
+    return solve(root,k,st);
+}
 int main() {
 
     /*
